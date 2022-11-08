@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Formats.Asn1;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TestGame
 {
@@ -22,6 +25,10 @@ namespace TestGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            List<String> inst = new List<string>() {"l1", "w5", "u", "d10", "u4"};
+            
+            Instructor instruction1 = new Instructor(inst);
+            
 
             ballPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
             ballSpeed = 100f;
