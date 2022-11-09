@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Formats.Asn1;
+// using System.Formats.Asn1;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace TestGame
 {
@@ -25,10 +27,10 @@ namespace TestGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            List<String> inst = new List<string>() {"l1", "w5", "u", "d10", "u4"};
-            
+            List<String> inst = new List<string>() { "l1", "w5", "u1", "d10", "u4" };
+
             Instructor instruction1 = new Instructor(inst);
-            
+            instruction1.createInstructions();
 
             ballPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
             ballSpeed = 100f;
@@ -44,31 +46,39 @@ namespace TestGame
 
         protected override void Update(GameTime gameTime)
         {
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //
+
+
+
+            ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
             // TODO: Add your update logic here
-            var kstate = Keyboard.GetState();
+            // var kstate = Keyboard.GetState();
 
-            if (kstate.IsKeyDown(Keys.Up))
-            {
-                ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            // if (kstate.IsKeyDown(Keys.Up))
+            // {
+            //     ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // }
 
-            if (kstate.IsKeyDown(Keys.Down))
-            {
-                ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            // if (kstate.IsKeyDown(Keys.Down))
+            // {
+            //     ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // }
 
-            if (kstate.IsKeyDown(Keys.Left))
-            {
-                ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            // if (kstate.IsKeyDown(Keys.Left))
+            // {
+            //     ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // }
 
-            if (kstate.IsKeyDown(Keys.Right))
-            {
-                ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            // if (kstate.IsKeyDown(Keys.Right))
+            // {
+            //     ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // }
 
             base.Update(gameTime);
         }
