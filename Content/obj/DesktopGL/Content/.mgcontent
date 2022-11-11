@@ -5,8 +5,10 @@
   <Config />
   <SourceFiles>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/ball.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/Turret.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

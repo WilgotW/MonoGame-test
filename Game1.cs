@@ -11,15 +11,18 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-        List<String> path1 = new List<string>() { "l5", "u5", "r3", "d2", "r7", "u1", "l1" };
-        Texture2D ballTexture;
-        public Vector2 ballPosition;
+        List<String> path1 = new List<string>() { "r6", "u2", "r3", "d5", "r3", "u6", "r1" };
+        static List<Enemy> enemyList = new List<Enemy>();
+        static List<Turret> turretList = new List<Turret>();
+
+        MouseController mouseController = new MouseController();
         double gt = 0;
         double timeSinceLast = 0;
-        static List<Enemy> enemyList = new List<Enemy>();
+        
+        Texture2D ballTexture;
+        Texture2D turretTexture;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        public Instructor instruction1;
 
         public Game1()
         {
@@ -27,23 +30,16 @@ namespace TestGame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
         protected override void Initialize()
         {
             base.Initialize();
         }
-
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("ball");
-        }
-        void AddEnemy()
-        {
-            Vector2 pos = new Vector2(400, 400);
-            Enemy enemy = new Enemy(path1, pos, 40f, gt);
-            enemyList.Add(enemy);
-            enemy.Start();
+            turretTexture = Content.Load<Texture2D>("Turret");
+            this.IsMouseVisible = true;
         }
         protected override void Update(GameTime gameTime)
         {
@@ -51,6 +47,7 @@ namespace TestGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            mouseController.MouseUpdate();
 
             gt = gameTime.TotalGameTime.TotalMilliseconds;
             if (gt > timeSinceLast + 3000)
@@ -76,6 +73,18 @@ namespace TestGame
             }
             base.Update(gameTime);
         }
+        void AddEnemy()
+        {
+            Vector2 pos = new Vector2(-ballTexture.Width / 2, _graphics.PreferredBackBufferHeight / 2);
+            Enemy enemy = new Enemy(path1, pos, 50f, gt);
+            enemyList.Add(enemy);
+            enemy.Start();
+        }
+        public static void AddTurret(Vector2 position){
+            Vector2 pos = position;
+            Turret turret = new Turret(position);
+            turretList.Add(turret);
+        }
 
         protected override void Draw(GameTime gameTime)
         {
@@ -83,17 +92,20 @@ namespace TestGame
 
             foreach(Enemy enemy in enemyList)
             {
-                drawEnemy(enemy.Position);
+                drawTexture(ballTexture, enemy.Position);
+            }
+            foreach(Turret turret in turretList){
+                drawTexture(turretTexture, turret.position);
             }
 
             base.Draw(gameTime);
         }
 
-        void drawEnemy(Vector2 position)
+        void drawTexture(Texture2D texture, Vector2 position)
         {
             _spriteBatch.Begin();
             _spriteBatch.Draw(
-                ballTexture,
+                texture,
                 position,
                 null,
                 Color.White,
