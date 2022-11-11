@@ -11,18 +11,14 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-        List<String> path1 = new List<string>() { "r5", "d5", "r3", "u10", "r7", "d5", "r1" };
-
+        List<String> path1 = new List<string>() { "l5", "u5", "r3", "d2", "r7", "u1", "l1" };
         Texture2D ballTexture;
         public Vector2 ballPosition;
         double gt = 0;
         double timeSinceLast = 0;
-        static List<Enemy> enemyList;
-        static Vector2 dir;
-        float ballSpeed;
+        static List<Enemy> enemyList = new List<Enemy>();
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         public Instructor instruction1;
 
         public Game1()
@@ -34,44 +30,18 @@ namespace TestGame
 
         protected override void Initialize()
         {
-/*            dir = new Vector2(0, 0);
-*/            // TODO: Add your initialization logic here
-            /*List<String> inst = new List<string>() {"r5", "d5", "r3", "u10", "r7", "d5", "r1"};
-            instruction1 = new Instructor(inst);*/
-            
-
-/*            ballPosition = new Vector2(0, _graphics.PreferredBackBufferHeight / 2);
-*/
-/*            ballSpeed = 40f;
-*/           base.Initialize();
+            base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("ball");
-/*            instruction1.getTime();
-*/        }
-
-
-        //var static: 
-        public static void changeDir(int x, int y)
-        {
-            if(enemyList.Count > 0)
-            {
-
-                foreach(Enemy enemy in enemyList)
-                {
-                    enemy.Dir = new Vector2(x, y);
-                }
-            }
-/*            dir = new Vector2(x, y);*/
         }
-
         void AddEnemy()
         {
             Vector2 pos = new Vector2(400, 400);
-            Enemy enemy = new Enemy(path1, pos, 100f, gt);
+            Enemy enemy = new Enemy(path1, pos, 40f, gt);
             enemyList.Add(enemy);
             enemy.Start();
         }
@@ -83,46 +53,27 @@ namespace TestGame
 
 
             gt = gameTime.TotalGameTime.TotalMilliseconds;
-            /*instruction1.CreateInstructions(gt);*/
-
-            if (gt > timeSinceLast + 1000)
+            if (gt > timeSinceLast + 3000)
             {
-
-                AddEnemy();
+                if(enemyList.Count < 5){
+                    AddEnemy();
+                    timeSinceLast = gt;
+                }
             }
-
-
-            // ballPosition = instruction1.ob;
             if(enemyList.Count > 0)
             {
                 foreach (Enemy enemy in enemyList)
                 {
+                    enemy.GameT = gt;
+                    enemy.changeDir();
                     float enemyX = enemy.Position.X;
                     float enemyY = enemy.Position.Y;
-                    enemyX += enemy.Speed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    enemyY += enemy.Speed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    enemyX += enemy.Speed * enemy.DirX * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    enemyY += enemy.Speed * enemy.DirY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                     enemy.Position = new Vector2(enemyX, enemyY);
                 }
             }
-            
-
-            /*ballPosition.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            ballPosition.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;*/
-
-            // TODO: Add your update logic here
-            // var kstate = Keyboard.GetState();
-
-            // if (kstate.IsKeyDown(Keys.Up))
-            // {
-            //     changeDir(true);
-            // }
-
-            // if (kstate.IsKeyDown(Keys.Right))
-            // {
-            //     changeDir(false);
-            // }
-
             base.Update(gameTime);
         }
 
@@ -134,8 +85,6 @@ namespace TestGame
             {
                 drawEnemy(enemy.Position);
             }
-
-            /*drawEnemy(ballPosition);*/
 
             base.Draw(gameTime);
         }
