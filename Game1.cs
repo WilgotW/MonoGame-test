@@ -11,9 +11,11 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-/*        GameTime gameTime = new GameTime();
-*/        Texture2D ballTexture;
+
+        Texture2D ballTexture;
         public Vector2 ballPosition;
+        public Vector2 ballPosition2;
+
         static Vector2 dir;
         float ballSpeed;
         private GraphicsDeviceManager _graphics;
@@ -38,6 +40,8 @@ namespace TestGame
             
 
             ballPosition = new Vector2(0, _graphics.PreferredBackBufferHeight / 2);
+            ballPosition2 = new Vector2(100, _graphics.PreferredBackBufferHeight / 2);
+
             ballSpeed = 40f;
             base.Initialize();
         }
@@ -71,6 +75,9 @@ namespace TestGame
 
             ballPosition.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
             ballPosition.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            ballPosition2.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            ballPosition2.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // TODO: Add your update logic here
             // var kstate = Keyboard.GetState();
