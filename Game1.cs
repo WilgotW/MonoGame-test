@@ -11,11 +11,13 @@ namespace TestGame
 {
     public class Game1 : Game
     {
+        List<String> path1 = new List<string>() { "r5", "d5", "r3", "u10", "r7", "d5", "r1" };
 
         Texture2D ballTexture;
         public Vector2 ballPosition;
-        public Vector2 ballPosition2;
-
+        double gt = 0;
+        double timeSinceLast = 0;
+        static List<Enemy> enemyList;
         static Vector2 dir;
         float ballSpeed;
         private GraphicsDeviceManager _graphics;
@@ -32,32 +34,47 @@ namespace TestGame
 
         protected override void Initialize()
         {
-            dir = new Vector2(0, 0);
-            // TODO: Add your initialization logic here
-            List<String> inst = new List<string>() {"r5", "d5", "r3", "u10", "r7", "d5", "r1"};
-
-            instruction1 = new Instructor(inst);
+/*            dir = new Vector2(0, 0);
+*/            // TODO: Add your initialization logic here
+            /*List<String> inst = new List<string>() {"r5", "d5", "r3", "u10", "r7", "d5", "r1"};
+            instruction1 = new Instructor(inst);*/
             
 
-            ballPosition = new Vector2(0, _graphics.PreferredBackBufferHeight / 2);
-            ballPosition2 = new Vector2(100, _graphics.PreferredBackBufferHeight / 2);
-
-            ballSpeed = 40f;
-            base.Initialize();
+/*            ballPosition = new Vector2(0, _graphics.PreferredBackBufferHeight / 2);
+*/
+/*            ballSpeed = 40f;
+*/           base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("ball");
-            instruction1.getTime();
-        }
+/*            instruction1.getTime();
+*/        }
 
+
+        //var static: 
         public static void changeDir(int x, int y)
         {
-            dir = new Vector2(x, y);
+            if(enemyList.Count > 0)
+            {
+
+                foreach(Enemy enemy in enemyList)
+                {
+                    enemy.Dir = new Vector2(x, y);
+                }
+            }
+/*            dir = new Vector2(x, y);*/
         }
 
+        void AddEnemy()
+        {
+            Vector2 pos = new Vector2(400, 400);
+            Enemy enemy = new Enemy(path1, pos, 100f, gt);
+            enemyList.Add(enemy);
+            enemy.Start();
+        }
         protected override void Update(GameTime gameTime)
         {
 
@@ -65,19 +82,33 @@ namespace TestGame
                 Exit();
 
 
-            double gt = gameTime.TotalGameTime.TotalMilliseconds;
-            instruction1.CreateInstructions(gt);
+            gt = gameTime.TotalGameTime.TotalMilliseconds;
+            /*instruction1.CreateInstructions(gt);*/
 
+            if (gt > timeSinceLast + 1000)
+            {
 
+                AddEnemy();
+            }
 
 
             // ballPosition = instruction1.ob;
+            if(enemyList.Count > 0)
+            {
+                foreach (Enemy enemy in enemyList)
+                {
+                    float enemyX = enemy.Position.X;
+                    float enemyY = enemy.Position.Y;
+                    enemyX += enemy.Speed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    enemyY += enemy.Speed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            ballPosition.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            ballPosition.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    enemy.Position = new Vector2(enemyX, enemyY);
+                }
+            }
+            
 
-            ballPosition2.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            ballPosition2.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            /*ballPosition.Y += ballSpeed * dir.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            ballPosition.X += ballSpeed * dir.X * (float)gameTime.ElapsedGameTime.TotalSeconds;*/
 
             // TODO: Add your update logic here
             // var kstate = Keyboard.GetState();
@@ -99,10 +130,22 @@ namespace TestGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            foreach(Enemy enemy in enemyList)
+            {
+                drawEnemy(enemy.Position);
+            }
+
+            /*drawEnemy(ballPosition);*/
+
+            base.Draw(gameTime);
+        }
+
+        void drawEnemy(Vector2 position)
+        {
             _spriteBatch.Begin();
             _spriteBatch.Draw(
                 ballTexture,
-                ballPosition,
+                position,
                 null,
                 Color.White,
                 0f,
@@ -112,8 +155,6 @@ namespace TestGame
                 0f
             );
             _spriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }
