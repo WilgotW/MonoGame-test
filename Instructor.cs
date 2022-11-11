@@ -1,74 +1,81 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-// using System.Formats.Asn1;
-using static System.Net.Mime.MediaTypeNames;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Timers;
 
 
 namespace TestGame
 {
     public class Instructor
     {
-        
-        
+
+        public GameTime gameTime;
+        public double timeSinceLast;
+        public int x = 0;
+        int amount = 0;
         public List<String> instructions = new List<string>();
         // public Vector2 ob {get; set;}
         // public int obSpeed {get; set;}
-        
+
         // public Vector2 ballPos { get; set; }
-        public Instructor(List<String> instructions)
+        public Instructor(List<String> inst)
         {
-            this.instructions = instructions;
+            this.instructions = inst;
             // this.ob = ob;
             // this.obSpeed = obSpeed;
         }
 
-        public void createInstructions()
+        public void CreateInstructions(double gameTime)
         {
-            for (int i = 0; i < instructions.Count; i++)
-            {    
-                createSection(instructions[i]);  
-                createInstructions(); 
+            if (gameTime > timeSinceLast + (amount * 1000) || gameTime == 0)
+            {
+                
+                CreateSection(instructions[x]);
+                Console.WriteLine(instructions[x]);
+                if (instructions.Count - 1 > x) 
+                {
+                    if (x > 0)
+                    {
+                        getTime();
+                    }
+                    x++;
+                    
+                }
+                timeSinceLast = gameTime;
             }
-            
         }
 
-        public void createSection(string instruction)
+        public void getTime()
         {
+            Console.WriteLine(instructions[x].Remove(0, 1));
+            amount = int.Parse(instructions[x].Remove(0, 1));
+        }
+
+
+        public void CreateSection(string instruction)
+        {
+
             char firstLetter = instruction[0];
-            int amount = 1;
-            if (instruction.Length > 1)
-            {
-                //multiple of the same instruction is declared
-                amount = int.Parse(instruction.Remove(0, 1));
-                amount++;
-            }
             
+
             switch (firstLetter)
             {
                 case 'r':
-                    printInstruction("Moving Right", amount);
-                    Game1.changeDir('r');
+                    // printInstruction("Moving Right", amount);
+                    Game1.changeDir(1, 0);
                     break;
                 case 'l':
-                    printInstruction("Moving Left", amount);
-                    Game1.changeDir('l');
+                    // printInstruction("Moving Left", amount);
+                    Game1.changeDir(-1, 0);
                     break;
                 case 'u':
-                    printInstruction("Moving Up", amount);
-                    Game1.changeDir('u');
+                    // printInstruction("Moving Up", amount);
+                    Game1.changeDir(0, -1);
                     break;
                 case 'd':
-                    printInstruction("Moving Down", amount);
-                    Game1.changeDir('d');
+                    // printInstruction("Moving Down", amount);
+                    Game1.changeDir(0, 1);
                     break;
             }
-            
         }
 
         public void printInstruction(string text, int amount)

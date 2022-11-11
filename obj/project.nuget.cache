@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "I8b443P79y6UOmwDacYfNV6p44oT39VHlyt4BrtN4H1pBK1L8Zd+JTkzUDBLERLdxEN+d7K2AykY4RXmw15R5g==",
+  "dgSpecHash": "L9/nYjnJPhYFxEDdpcLzJQOh01Dst93b3I1/nMdrLpg3suZ0axg40fbaJXfL7k78d/nZm5ZtWZt3IbOUevGGgQ==",
   "success": true,
-  "projectFilePath": "E:\\C#\\Monogame\\TestGame\\TestGame\\TestGame.csproj",
+  "projectFilePath": "C:\\Users\\21wiwa\\source\\repos\\MonoGame-test\\TestGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\21wiwa\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\21wiwa\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\21wiwa\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.28\\microsoft.netcore.app.host.win-x64.3.1.28.nupkg.sha512"
   ],
   "logs": []
 }

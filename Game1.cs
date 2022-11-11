@@ -11,14 +11,15 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-        Texture2D ballTexture;
-        Vector2 ballPosition;
-        public static Vector2 dir;
+/*        GameTime gameTime = new GameTime();
+*/        Texture2D ballTexture;
+        public Vector2 ballPosition;
+        static Vector2 dir;
         float ballSpeed;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Instructor instruction1;
+        public Instructor instruction1;
 
         public Game1()
         {
@@ -31,14 +32,13 @@ namespace TestGame
         {
             dir = new Vector2(0, 0);
             // TODO: Add your initialization logic here
-            List<String> inst = new List<string>() { "l1", "w5", "u1", "d10", "u4" };
+            List<String> inst = new List<string>() {"r5", "d5", "r3", "u10", "r7", "d5", "r1"};
 
             instruction1 = new Instructor(inst);
-            instruction1.createInstructions();
+            
 
-            ballPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+            ballPosition = new Vector2(0, _graphics.PreferredBackBufferHeight / 2);
             ballSpeed = 40f;
-
             base.Initialize();
         }
 
@@ -46,26 +46,12 @@ namespace TestGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("ball");
+            instruction1.getTime();
         }
 
-        public static void changeDir (char direction){
-           
-            switch (direction)
-            {
-                case 'r':
-                    dir = new Vector2(1, 0);
-                    break;
-                case 'l':
-                    dir = new Vector2(-1, 0);  
-                    break;
-                case 'u':
-                    dir = new Vector2(0, -1);
-                    break;
-                case 'd':
-                    dir = new Vector2(0, 1); 
-                    break;
-            }
-            
+        public static void changeDir(int x, int y)
+        {
+            dir = new Vector2(x, y);
         }
 
         protected override void Update(GameTime gameTime)
@@ -74,7 +60,11 @@ namespace TestGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            //
+
+            double gt = gameTime.TotalGameTime.TotalMilliseconds;
+            instruction1.CreateInstructions(gt);
+
+
 
 
             // ballPosition = instruction1.ob;

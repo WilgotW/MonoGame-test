@@ -1,2 +1,1 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"E:/C#/Monogame/TestGame/TestGame/Content/ball.png","E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0,0872035
