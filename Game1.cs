@@ -20,7 +20,9 @@ namespace TestGame
         double timeSinceLast = 0;
         
         Texture2D ballTexture;
-        Texture2D turretTexture;
+        Texture2D turretBaseTexture;
+        Texture2D turretShooterTexture;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -38,7 +40,9 @@ namespace TestGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("ball");
-            turretTexture = Content.Load<Texture2D>("Turret");
+            turretBaseTexture = Content.Load<Texture2D>("TurretBase");
+            turretShooterTexture = Content.Load<Texture2D>("TurretShooter");
+
             this.IsMouseVisible = true;
         }
         protected override void Update(GameTime gameTime)
@@ -97,16 +101,17 @@ namespace TestGame
 
             foreach(Enemy enemy in enemyList)
             {
-                drawTexture(ballTexture, enemy.Position);
+                drawTexture(ballTexture, enemy.Position, 0);
             }
             foreach(Turret turret in turretList){
-                drawTexture(turretTexture, turret.position);
+                drawTexture(turretBaseTexture, turret.position, 0);
+                drawTexture(turretShooterTexture, turret.position, turret.rotation);
             }
 
             base.Draw(gameTime);
         }
 
-        void drawTexture(Texture2D texture, Vector2 position)
+        void drawTexture(Texture2D texture, Vector2 position, float rotation)
         {
             _spriteBatch.Begin();
             _spriteBatch.Draw(
@@ -114,7 +119,7 @@ namespace TestGame
                 position,
                 null,
                 Color.White,
-                0f,
+                rotation,
                 new Vector2(ballTexture.Width / 2, ballTexture.Height / 2),
                 Vector2.One,
                 SpriteEffects.None,

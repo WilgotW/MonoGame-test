@@ -74,3 +74,5 @@ C:\Users\21wiwa\source\repos\MonoGame-test\bin\Debug\netcoreapp3.1\runtimes\win-
 C:\Users\21wiwa\source\repos\MonoGame-test\obj\Debug\netcoreapp3.1\TestGame.csproj.CopyComplete
 C:\Users\21wiwa\source\repos\MonoGame-test\obj\Debug\netcoreapp3.1\TestGame.genruntimeconfig.cache
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Turret.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretBase.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretShooter.xnb

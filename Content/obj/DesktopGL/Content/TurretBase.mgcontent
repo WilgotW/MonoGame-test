@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/Turret.png</SourceFile>
-  <SourceTime>2022-11-11T22:02:28.4481491+01:00</SourceTime>
-  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/Turret.xnb</DestFile>
-  <DestTime>2022-11-12T21:01:51.220714+01:00</DestTime>
+  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/TurretBase.png</SourceFile>
+  <SourceTime>2022-11-12T23:05:42.3668332+01:00</SourceTime>
+  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/TurretBase.xnb</DestFile>
+  <DestTime>2022-11-12T23:08:59.6069158+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

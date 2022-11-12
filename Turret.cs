@@ -16,6 +16,8 @@ namespace TestGame
         private float turretRange {get; set;}
         List<double> allDistances = new List<double>();
 
+        public float rotation;
+
         // public double gt {get; set;}
         private double currentClosest = 10000;
 
@@ -30,6 +32,18 @@ namespace TestGame
 
         public void EnemyUpdate(){
             GetClosest();
+            GetRotation();
+        }
+
+        void GetRotation(){
+            if(closestEnemy != null){
+                // Console.WriteLine(rotation);
+
+                float x = position.X - closestEnemy.Position.X;
+                float y = position.Y - closestEnemy.Position.Y;
+
+                rotation = (float)Math.Atan2(y, x);
+            }
         }
 
         void GetClosest(){
@@ -50,7 +64,7 @@ namespace TestGame
             }
             if(closestEnemy != null){
 
-                Console.WriteLine(closestEnemy.Position);    
+                // Console.WriteLine(closestEnemy.Position);    
             }
         }
 
