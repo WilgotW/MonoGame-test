@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace TestGame
@@ -14,6 +15,8 @@ namespace TestGame
         public List<Enemy> enemies = new List<Enemy>();
         private float turretRange {get; set;}
         List<double> allDistances = new List<double>();
+
+        // public double gt {get; set;}
         private double currentClosest = 10000;
 
         Enemy closestEnemy = null;
@@ -22,16 +25,17 @@ namespace TestGame
             this.position = position;
             this.enemies = enemies;
             this.turretRange = turretRange;
+            // this.gt = gt;
         }
 
-        public void CheckEnemyDistance(){
+        public void EnemyUpdate(){
             GetClosest();
         }
 
         void GetClosest(){
             double distanceToClosestEnemy = 10000;
             closestEnemy = null;
-            
+
             foreach(Enemy enemy in enemies){
                 float yDistance = enemy.Position.Y - position.Y;
                 float xDistance = enemy.Position.X - position.X;
@@ -51,7 +55,17 @@ namespace TestGame
         }
 
         void ShootEnemy(){
-            
+            Console.WriteLine("Shooting at " + closestEnemy.Position);
+
+
+            // gt = gameTime.TotalGameTime.TotalMilliseconds;
+            // if (gt > timeSinceLast + 7000)
+            // {
+            //     if(enemyList.Count < 2){
+            //         AddEnemy();
+            //         timeSinceLast = gt;
+            //     }
+            // }
         }
     }
 }

@@ -73,7 +73,7 @@ namespace TestGame
             }
 
             foreach(Turret turret in turretList){
-                turret.CheckEnemyDistance();
+                turret.EnemyUpdate();
             }
 
             base.Update(gameTime);
