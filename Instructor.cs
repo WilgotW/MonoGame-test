@@ -17,6 +17,7 @@ namespace TestGame
         public Instructor(List<String> inst, double GameT)
         {
             this.instructions = inst;
+            this.GameT = GameT;
         }
         public void SetGameTime(double gt){
             GameT = gt;

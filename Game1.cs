@@ -50,9 +50,9 @@ namespace TestGame
             mouseController.MouseUpdate();
 
             gt = gameTime.TotalGameTime.TotalMilliseconds;
-            if (gt > timeSinceLast + 3000)
+            if (gt > timeSinceLast + 7000)
             {
-                if(enemyList.Count < 5){
+                if(enemyList.Count < 2){
                     AddEnemy();
                     timeSinceLast = gt;
                 }
@@ -71,6 +71,11 @@ namespace TestGame
                     enemy.Position = new Vector2(enemyX, enemyY);
                 }
             }
+
+            foreach(Turret turret in turretList){
+                turret.CheckEnemyDistance();
+            }
+
             base.Update(gameTime);
         }
         void AddEnemy()
@@ -82,7 +87,7 @@ namespace TestGame
         }
         public static void AddTurret(Vector2 position){
             Vector2 pos = position;
-            Turret turret = new Turret(position);
+            Turret turret = new Turret(position, enemyList, 250f);
             turretList.Add(turret);
         }
 

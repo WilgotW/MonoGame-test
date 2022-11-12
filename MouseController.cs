@@ -17,7 +17,6 @@ namespace TestGame
         public void MouseUpdate(){
             var mousePosition = Mouse.GetState().Position;
             mousePos = new Vector2(mousePosition.X, mousePosition.Y);
-            Console.WriteLine(mousePos);
 
             MouseState newState = Mouse.GetState(); 
             if(newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
