@@ -39,7 +39,7 @@ namespace TestGame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            ballTexture = Content.Load<Texture2D>("ball");
+            ballTexture = Content.Load<Texture2D>("evilFlesh");
             turretBaseTexture = Content.Load<Texture2D>("TurretBase");
             turretShooterTexture = Content.Load<Texture2D>("TurretShooter");
 

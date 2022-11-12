@@ -76,3 +76,5 @@ C:\Users\21wiwa\source\repos\MonoGame-test\obj\Debug\netcoreapp3.1\TestGame.genr
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Turret.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretBase.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretShooter.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Monster1.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\evilFlesh.xnb
