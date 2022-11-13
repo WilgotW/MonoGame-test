@@ -4,14 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/background1.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/ball.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/evilFlesh.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/Level1.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Monster1.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/test.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Turret.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/TurretBase.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/TurretShooter.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

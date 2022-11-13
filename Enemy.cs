@@ -13,16 +13,18 @@ namespace TestGame
         public double GameT;
         public Vector2 Position { get; set; }
         public float Speed { get; set; }
+        public int Health {get; set;}
         public int DirX { get; set; }
         public int DirY { get; set; }
         public Vector2 Dir;
 
-        public Enemy(List<String> instructions, Vector2 position, float speed, double gameT)
+        public Enemy(List<String> instructions, Vector2 position, float speed, double gameT, int Health)
         {
             this.instructions = instructions;
             this.Position = position;
             this.Speed = speed;
             this.GameT = gameT;
+            this.Health = Health;
         }
 
         public void Start()
@@ -31,7 +33,9 @@ namespace TestGame
             instruction1.getTime();
         }
 
-        //static: ?
+        public void TakeDamage(int dmg){
+            Health -= dmg;
+        }
         public void changeDir()
         {
             instruction1.SetGameTime(GameT);

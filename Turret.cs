@@ -15,25 +15,35 @@ namespace TestGame
         public List<Enemy> enemies = new List<Enemy>();
         private float turretRange {get; set;}
         List<double> allDistances = new List<double>();
-
         public float rotation;
-
-        // public double gt {get; set;}
+        public int shootRate {get; set;}
+        double timeSinceLast = 0;
+        public double gt {get; set;}
         private double currentClosest = 10000;
 
         Enemy closestEnemy = null;
         
-        public Turret(Vector2 position, List<Enemy> enemies, float turretRange){
+        public Turret(Vector2 position, List<Enemy> enemies, float turretRange, double gt, int shootRate){
             this.position = position;
             this.enemies = enemies;
             this.turretRange = turretRange;
-            // this.gt = gt;
+            this.gt = gt;
+            this.shootRate = shootRate;
         }
-
+        
+        public void SetGameTime(double _gt){
+            gt = _gt;
+        }
         public void EnemyUpdate(){
             GetClosest();
             GetRotation();
+            if (gt > timeSinceLast + shootRate)
+            {
+                ShootEnemy();
+                timeSinceLast = gt;
+            }
         }
+
 
         void GetRotation(){
             if(closestEnemy != null){
@@ -69,17 +79,12 @@ namespace TestGame
         }
 
         void ShootEnemy(){
-            Console.WriteLine("Shooting at " + closestEnemy.Position);
+            if(closestEnemy != null){
+                Console.WriteLine("Shooting at " + closestEnemy.Position);
+                closestEnemy.TakeDamage(1);
+            }
 
-
-            // gt = gameTime.TotalGameTime.TotalMilliseconds;
-            // if (gt > timeSinceLast + 7000)
-            // {
-            //     if(enemyList.Count < 2){
-            //         AddEnemy();
-            //         timeSinceLast = gt;
-            //     }
-            // }
+            
         }
     }
 }

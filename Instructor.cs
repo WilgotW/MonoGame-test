@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-
+using System.Globalization;
 
 namespace TestGame
 {
@@ -9,7 +9,7 @@ namespace TestGame
     {
         public double timeSinceLast = 0;
         public int x = 0;
-        int amount = 0;
+        float amount = 0;
         public List<String> instructions = new List<string>();
         public double GameT {get; set;}
         public int dx = 0;
@@ -40,7 +40,7 @@ namespace TestGame
         }
         public void getTime()
         {
-            amount = int.Parse(instructions[x].Remove(0, 1));
+            amount = float.Parse(instructions[x].Remove(0, 1), CultureInfo.InvariantCulture.NumberFormat);
         }
         public void CreateSection(string instruction)
         {
