@@ -16,12 +16,16 @@ namespace TestGame
 
         public void MouseUpdate(){
             var mousePosition = Mouse.GetState().Position;
+            
             mousePos = new Vector2(mousePosition.X, mousePosition.Y);
 
             MouseState newState = Mouse.GetState(); 
             if(newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
-                Game1.AddTurret(mousePos);
+                if(mousePosition.Y < 900){
+                    
+                    Game1.AddTurret(mousePos);
+                }
             }
             oldState = newState; 
             

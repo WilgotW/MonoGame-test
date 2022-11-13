@@ -21,6 +21,10 @@ namespace TestGame
         public double gt {get; set;}
         private double currentClosest = 10000;
 
+        float lookDirX;
+        float lookDirY;
+        bool e = true;
+
         Enemy closestEnemy = null;
         
         public Turret(Vector2 position, List<Enemy> enemies, float turretRange, double gt, int shootRate){
@@ -37,8 +41,12 @@ namespace TestGame
         public void EnemyUpdate(){
             GetClosest();
             GetRotation();
+            
             if (gt > timeSinceLast + shootRate)
             {
+                
+                
+
                 ShootEnemy();
                 timeSinceLast = gt;
             }
@@ -49,10 +57,21 @@ namespace TestGame
             if(closestEnemy != null){
                 // Console.WriteLine(rotation);
 
-                float x = position.X - closestEnemy.Position.X;
-                float y = position.Y - closestEnemy.Position.Y;
+                lookDirX = position.X - closestEnemy.Position.X;
+                lookDirY = position.Y - closestEnemy.Position.Y;
 
-                rotation = (float)Math.Atan2(y, x);
+                if(!e){
+                    e = true;
+                    Vector2 test = new Vector2(position.X + lookDirX/70, position.Y + lookDirY/70);
+                    position = test;
+                }else{
+                    e = false;
+                    Vector2 test = new Vector2(position.X - lookDirX/70, position.Y - lookDirY/70);
+                    position = test;
+                }
+                
+
+                rotation = (float)Math.Atan2(lookDirY, lookDirX);
             }
         }
 
@@ -80,7 +99,7 @@ namespace TestGame
 
         void ShootEnemy(){
             if(closestEnemy != null){
-                Console.WriteLine("Shooting at " + closestEnemy.Position);
+                // Console.WriteLine("Shooting at " + closestEnemy.Position);
                 closestEnemy.TakeDamage(1);
             }
 

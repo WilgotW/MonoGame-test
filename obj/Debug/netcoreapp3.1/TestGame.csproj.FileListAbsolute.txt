@@ -81,3 +81,5 @@ E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\evilFlesh.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\test.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Level1.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\background1.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\MoneyCounter.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Score.xnb
