@@ -15,7 +15,7 @@ namespace TestGame
         static List<Enemy> enemyList = new List<Enemy>();
         static List<Turret> turretList = new List<Turret>();
 
-        MouseController mouseController = new MouseController();
+        
         double gt = 0;
         static double staticGt = 0;
         double timeSinceLast = 0;
@@ -32,6 +32,8 @@ namespace TestGame
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        MouseController mouseController;
 
         public Game1()
         {
@@ -51,6 +53,7 @@ namespace TestGame
         protected override void LoadContent()
         {
             
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Score");
             background1Texture = Content.Load<Texture2D>("background1");
@@ -59,6 +62,8 @@ namespace TestGame
             turretBaseTexture = Content.Load<Texture2D>("TurretBase");
             turretShooterTexture = Content.Load<Texture2D>("TurretShooter");
             moneyCounterTexture = Content.Load<Texture2D>("MoneyCounter");
+
+            mouseController = new MouseController(turretList, turretBaseTexture.Width, turretBaseTexture.Height);
 
             this.IsMouseVisible = true;
         }
@@ -69,6 +74,8 @@ namespace TestGame
                 Exit();
 
             mouseController.MouseUpdate();
+
+            // mouseController._turretList = turretList;
 
             gt = gameTime.TotalGameTime.TotalMilliseconds;
             staticGt = gt;
@@ -124,6 +131,10 @@ namespace TestGame
                 turretList.Add(turret);
             }
             
+        }
+        public static void DeleteTurret(int turretIndex){
+            turretList.RemoveAt(turretIndex);
+            score += 500;
         }
 
         void EnemyDie(int index){
