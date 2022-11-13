@@ -44,8 +44,8 @@ namespace TestGame
         protected override void Initialize()
         {
             base.Initialize();
-            _graphics.PreferredBackBufferWidth = 1920;  
-            _graphics.PreferredBackBufferHeight = 1080;   
+            _graphics.PreferredBackBufferWidth = 1840;  
+            _graphics.PreferredBackBufferHeight = 1000;   
             _graphics.ApplyChanges();
         }
         protected override void LoadContent()
@@ -111,7 +111,7 @@ namespace TestGame
         }
         void AddEnemy()
         {
-            Vector2 pos = new Vector2(-monster1Texture.Width / 2, (_graphics.PreferredBackBufferHeight / 2));
+            Vector2 pos = new Vector2(-monster1Texture.Width / 2, (_graphics.PreferredBackBufferHeight / 2)+40);
             Enemy enemy = new Enemy(path1, pos, 60f, gt, 35);
             enemyList.Add(enemy);
             enemy.Start();
