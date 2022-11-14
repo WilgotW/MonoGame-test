@@ -62,8 +62,6 @@ namespace TestGame
                 GetRotation(farthestEnemy);
             }
             
-            
-
             if (gt > timeSinceLast + shootRate)
             {
                 ShootEnemy();
@@ -159,6 +157,7 @@ namespace TestGame
                 farthestEnemy.TakeDamage(damage);
                 if(farthestEnemy.Health <= 0){
                     targetEnemyKilled = true;
+                    targetFound = false;
                 }
             }
         }

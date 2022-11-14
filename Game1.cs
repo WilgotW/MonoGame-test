@@ -187,6 +187,7 @@ namespace TestGame
             enemyList.RemoveAt(index);
         }
 
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

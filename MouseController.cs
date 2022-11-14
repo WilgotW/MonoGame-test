@@ -48,8 +48,11 @@ namespace TestGame
                     if(_turretList.Count > 0){
                         if(_turretList[hoveringTurretIndex].shootUppgrade.hovering == true){
                             // if(_turretList[hoveringTurretIndex].damage < 2){
-                                _turretList[hoveringTurretIndex].damage++;
-                                Console.WriteLine("+1 damage");
+                                if(Game1.score >= 400){    
+                                    _turretList[hoveringTurretIndex].damage++;
+                                    Game1.score -= 200;
+                                    Console.WriteLine("+1 damage");
+                                }
                             // }
                         }
                         else if(_turretList[hoveringTurretIndex].mouseIsHovering){
