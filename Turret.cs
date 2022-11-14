@@ -28,6 +28,7 @@ namespace TestGame
         float lookDirY;
         bool e = true;
         int p = 0;
+        public int damage = 1;
 
         bool destroyed = true;
         Enemy closestEnemy = null;
@@ -155,7 +156,7 @@ namespace TestGame
             //     closestEnemy.TakeDamage(1);
             // }
             if(farthestEnemy != null){
-                farthestEnemy.TakeDamage(1);
+                farthestEnemy.TakeDamage(damage);
                 if(farthestEnemy.Health <= 0){
                     targetEnemyKilled = true;
                 }

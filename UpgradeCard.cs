@@ -15,6 +15,7 @@ namespace TestGame
         public Vector2 position{get; set;}
         public float rotation{get; set;}
         public Vector2 offset {get; set;}
+        public bool hovering = false;
         public UpgradeCard(Texture2D texture, Vector2 position, float rotation, Vector2 offset){
             this.texture = texture;
             this.position = position;

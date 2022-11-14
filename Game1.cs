@@ -195,7 +195,7 @@ namespace TestGame
             DrawTexture(moneyCounterTexture, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height/2), 0, new Vector2(32, 32));
             DrawText(font, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height + 25), score.ToString());
             
-            DrawTexture(cardBasicTurret, new Vector2(_graphics.PreferredBackBufferWidth - cardBasicTurret.Width, -cardBasicTurret.Height/2 + _graphics.PreferredBackBufferHeight/2), 0f, new Vector2(32, 32));
+            
             // DrawTexture(shootSpeedUpgrade, new Vector2(_graphics.PreferredBackBufferWidth - 232,_graphics.PreferredBackBufferHeight/2 + 55), 0f, new Vector2(32, 32));
             // DrawTexture(rangeUpgrade, new Vector2(_graphics.PreferredBackBufferWidth - 232,_graphics.PreferredBackBufferHeight/2 + 170), 0f, new Vector2(32, 32));
             
@@ -210,6 +210,7 @@ namespace TestGame
                 DrawTexture(turret.basicTurretTexture, turret.position, turret.rotation, new Vector2(32, 32));
 
                 if(turret.showUpgrades){
+                    DrawTexture(cardBasicTurret, new Vector2(_graphics.PreferredBackBufferWidth - cardBasicTurret.Width, -cardBasicTurret.Height/2 + _graphics.PreferredBackBufferHeight/2), 0f, new Vector2(32, 32));
                     DrawTexture(turret.shootUppgrade.texture, turret.shootUppgrade.position, turret.shootUppgrade.rotation, turret.shootUppgrade.offset);
                     DrawTexture(turret.rangeUppgrade.texture, turret.rangeUppgrade.position, turret.rangeUppgrade.rotation, turret.rangeUppgrade.offset);
                 }

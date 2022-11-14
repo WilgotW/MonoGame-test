@@ -21,6 +21,7 @@ namespace TestGame
         bool hasBeenPressed = false;
         public double gt {get; set;}
         public double timeSinceLast = 0;
+        
         public MouseController(List<Turret> _turretList, float turretWidth, float turretHeight, double gt){
             this._turretList = _turretList;
             this.turretWidth = turretWidth;
@@ -29,10 +30,10 @@ namespace TestGame
         }
         public void MouseUpdate(){
             var mousePosition = Mouse.GetState().Position;
-            
             mousePos = new Vector2(mousePosition.X, mousePosition.Y);
 
-            CheckTurretCollision();
+            CheckTurretCollision(mousePos);
+            CheckUpgradeCollision(mousePos);
             
             if (gt > timeSinceLast + 1000)
             {
@@ -45,7 +46,13 @@ namespace TestGame
             {   
                 if(mousePosition.Y < 900){
                     if(_turretList.Count > 0){
-                        if(_turretList[hoveringTurretIndex].mouseIsHovering){
+                        if(_turretList[hoveringTurretIndex].shootUppgrade.hovering == true){
+                            // if(_turretList[hoveringTurretIndex].damage < 2){
+                                _turretList[hoveringTurretIndex].damage++;
+                                Console.WriteLine("+1 damage");
+                            // }
+                        }
+                        else if(_turretList[hoveringTurretIndex].mouseIsHovering){
                             Console.WriteLine("selecting");
                             
                             _turretList[hoveringTurretIndex].showUpgrades = true;
@@ -74,10 +81,30 @@ namespace TestGame
             oldState = newState; 
             
         }
+        void CheckUpgradeCollision(Vector2 mousePos){
+            
+            // Console.WriteLine(hovering);
 
-        void CheckTurretCollision(){
-            var mousePosition = Mouse.GetState().Position;
-            mousePos = new Vector2(mousePosition.X, mousePosition.Y);
+            if(_turretList.Count > 0){
+                if(mousePos.X > _turretList[hoveringTurretIndex].shootUppgrade.position.X - _turretList[hoveringTurretIndex].shootUppgrade.texture.Width/4 && mousePos.X < _turretList[hoveringTurretIndex].shootUppgrade.position.X + _turretList[hoveringTurretIndex].shootUppgrade.texture.Width){
+                    if(mousePos.Y > _turretList[hoveringTurretIndex].shootUppgrade.position.Y - _turretList[hoveringTurretIndex].shootUppgrade.texture.Height/2 && mousePos.Y < _turretList[hoveringTurretIndex].shootUppgrade.position.Y + _turretList[hoveringTurretIndex].shootUppgrade.texture.Height/2){
+                        // hasBeenPressed = false;
+                        _turretList[hoveringTurretIndex].shootUppgrade.hovering = true;
+                        
+
+                    }else{
+                        _turretList[hoveringTurretIndex].shootUppgrade.hovering = false;
+                    }
+                    
+                }else{
+                    _turretList[hoveringTurretIndex].shootUppgrade.hovering = false;
+                }
+            }
+                
+                
+            
+        }
+        void CheckTurretCollision(Vector2 mousePos){
             // Console.WriteLine(hovering);
 
             for (int i = 0; i < _turretList.Count; i++)
