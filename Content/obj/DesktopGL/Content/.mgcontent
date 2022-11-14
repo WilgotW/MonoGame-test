@@ -6,17 +6,29 @@
   <SourceFiles>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/background1.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/ball.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/BasicTurretShoot.png</File>
+    <File>C:/Users/Wilgot/Desktop/BasicTurret.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/CardBasicTurret.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/evilFlesh.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/evilFleshHit.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Level1.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/MoneyCounter.png</File>
-    <File>E:/C#/Monogame/TestGame/TestGame/Content/Monster1.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/RangeUpgrade.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Score.spritefont</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/ShootSpeedUpgrade.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/test.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Turret.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/TurretBase.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/TurretBaseV2.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/TurretShooter.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>BasicTurret.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

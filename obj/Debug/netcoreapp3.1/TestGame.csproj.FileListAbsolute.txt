@@ -76,10 +76,16 @@ C:\Users\21wiwa\source\repos\MonoGame-test\obj\Debug\netcoreapp3.1\TestGame.genr
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Turret.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretBase.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretShooter.xnb
-E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Monster1.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\evilFlesh.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\test.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Level1.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\background1.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\MoneyCounter.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\Score.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\BasicTurret.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\TurretBaseV2.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\BasicTurretShoot.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\evilFleshHit.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\CardBasicTurret.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\RangeUpgrade.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\ShootSpeedUpgrade.xnb
