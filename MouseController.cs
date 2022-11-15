@@ -22,6 +22,7 @@ namespace TestGame
         public double gt {get; set;}
         public double timeSinceLast = 0;
         
+        
         public MouseController(List<Turret> _turretList, float turretWidth, float turretHeight, double gt){
             this._turretList = _turretList;
             this.turretWidth = turretWidth;
@@ -33,33 +34,50 @@ namespace TestGame
             mousePos = new Vector2(mousePosition.X, mousePosition.Y);
 
             CheckTurretCollision(mousePos);
-            CheckUpgradeCollision(mousePos);
+
+            
             
             if (gt > timeSinceLast + 1000)
             {
                 hasBeenPressed = false;
                 timeSinceLast = gt;
             }
-
+            // Console.WriteLine(_turretList[hoveringTurretIndex].rangeUppgrade.hovering);
             MouseState newState = Mouse.GetState(); 
             if(newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {   
+                if(_turretList.Count > 0){
+                    CheckUpgradeCollision(mousePos, _turretList[hoveringTurretIndex].shootUppgrade);
+                    CheckUpgradeCollision(mousePos, _turretList[hoveringTurretIndex].rangeUppgrade);
+                }
                 if(mousePosition.Y < 900){
                     if(_turretList.Count > 0){
                         if(_turretList[hoveringTurretIndex].shootUppgrade.hovering == true){
                             // if(_turretList[hoveringTurretIndex].damage < 2){
                                 if(Game1.score >= 400){    
                                     _turretList[hoveringTurretIndex].damage++;
-                                    Game1.score -= 200;
+                                    Game1.score -= 400;
                                     Console.WriteLine("+1 damage");
                                 }
                             // }
+                        }else if(_turretList[hoveringTurretIndex].rangeUppgrade.hovering == true){
+                            if(Game1.score >= 400 && _turretList[hoveringTurretIndex].rangeTextureScale < 1.6f){   
+                                _turretList[hoveringTurretIndex].rangeTextureScale *= 1.25f;
+
+                                _turretList[hoveringTurretIndex].turretRange *= 1.25f;
+                                Game1.score -= 400;
+                                Console.WriteLine(_turretList[hoveringTurretIndex].rangeTextureScale);
+                            }
                         }
-                        else if(_turretList[hoveringTurretIndex].mouseIsHovering){
+                        else if(_turretList[hoveringTurretIndex].mouseIsHovering && _turretList[hoveringTurretIndex].showUpgrades == false){
                             Console.WriteLine("selecting");
                             
                             _turretList[hoveringTurretIndex].showUpgrades = true;
-                        }else{
+                        }
+                        else if(_turretList[hoveringTurretIndex].showUpgrades == true && !_turretList[hoveringTurretIndex].mouseIsHovering){
+                            _turretList[hoveringTurretIndex].showUpgrades = false;
+                        }
+                        else{
                             Game1.AddTurret(mousePos);
 
                             _turretList[hoveringTurretIndex].showUpgrades = false;
@@ -84,23 +102,17 @@ namespace TestGame
             oldState = newState; 
             
         }
-        void CheckUpgradeCollision(Vector2 mousePos){
+        void CheckUpgradeCollision(Vector2 mousePos, UpgradeCard upgrade){            
             
-            // Console.WriteLine(hovering);
-
             if(_turretList.Count > 0){
-                if(mousePos.X > _turretList[hoveringTurretIndex].shootUppgrade.position.X - _turretList[hoveringTurretIndex].shootUppgrade.texture.Width/4 && mousePos.X < _turretList[hoveringTurretIndex].shootUppgrade.position.X + _turretList[hoveringTurretIndex].shootUppgrade.texture.Width){
-                    if(mousePos.Y > _turretList[hoveringTurretIndex].shootUppgrade.position.Y - _turretList[hoveringTurretIndex].shootUppgrade.texture.Height/2 && mousePos.Y < _turretList[hoveringTurretIndex].shootUppgrade.position.Y + _turretList[hoveringTurretIndex].shootUppgrade.texture.Height/2){
-                        // hasBeenPressed = false;
-                        _turretList[hoveringTurretIndex].shootUppgrade.hovering = true;
-                        
-
+                if(mousePos.X > upgrade.position.X - upgrade.texture.Width/4 && mousePos.X < upgrade.position.X + upgrade.texture.Width){
+                    if(mousePos.Y > upgrade.position.Y - upgrade.texture.Height/2 && mousePos.Y < upgrade.position.Y + upgrade.texture.Height/2){
+                        upgrade.hovering = true;
                     }else{
-                        _turretList[hoveringTurretIndex].shootUppgrade.hovering = false;
+                        upgrade.hovering = false;
                     }
-                    
                 }else{
-                    _turretList[hoveringTurretIndex].shootUppgrade.hovering = false;
+                    upgrade.hovering = false;
                 }
             }
                 

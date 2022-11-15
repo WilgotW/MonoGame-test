@@ -15,7 +15,7 @@ namespace TestGame
         public bool beenPressed = false;
         public Vector2 position {get; set;}
         public List<Enemy> enemies = new List<Enemy>();
-        private float turretRange {get; set;}
+        public float turretRange {get; set;}
         List<double> allDistances = new List<double>();
         public float rotation;
         public int shootRate {get; set;}
@@ -40,6 +40,8 @@ namespace TestGame
         public bool showUpgrades;
         public UpgradeCard shootUppgrade;
         public UpgradeCard rangeUppgrade;
+
+        public float rangeTextureScale = 1f;
 
         public Turret(Vector2 position, List<Enemy> enemies, float turretRange, double gt, int shootRate, Texture2D basicTurretTexture, UpgradeCard shootUppgrade, UpgradeCard rangeUppgrade){
             this.position = position;

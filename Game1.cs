@@ -34,7 +34,8 @@ namespace TestGame
         Texture2D turretBaseTexture;
         static Texture2D basicTurretIdle;
         static Texture2D basicTurretShoot;
-        
+        Texture2D rangeTexture;
+
         Texture2D moneyCounterTexture;
 
         Texture2D cardBasicTurret;
@@ -47,7 +48,7 @@ namespace TestGame
         MouseController mouseController;
         public static GraphicsDeviceManager static_graphics;
 
-        
+        Texture2D whiteRectangle;
 
         
         public Game1()
@@ -84,9 +85,13 @@ namespace TestGame
 
             turretBaseTexture = Content.Load<Texture2D>("TurretBaseV2");
             moneyCounterTexture = Content.Load<Texture2D>("MoneyCounter");
+            rangeTexture = Content.Load<Texture2D>("RangeTexture");
 
             basicTurretIdle = Content.Load<Texture2D>("BasicTurret");
             basicTurretShoot = Content.Load<Texture2D>("BasicTurretShoot");
+
+            whiteRectangle = new Texture2D(GraphicsDevice, 1, 1);
+            whiteRectangle.SetData(new[] { Color.White });
 
             mouseController = new MouseController(turretList, turretBaseTexture.Width, turretBaseTexture.Height, gt);
 
@@ -170,7 +175,7 @@ namespace TestGame
                 Vector2 pos = position;
                 UpgradeCard shootUppgradeCard = new UpgradeCard(shootSpeedUpgrade, new Vector2(static_graphics.PreferredBackBufferWidth - 232, static_graphics.PreferredBackBufferHeight/2 + 55), 0f, new Vector2(32, 32));
                 UpgradeCard rangeUppgradeCard = new UpgradeCard(rangeUpgrade, new Vector2(static_graphics.PreferredBackBufferWidth - 232, static_graphics.PreferredBackBufferHeight/2 + 170), 0f, new Vector2(32, 32));
-                Turret turret = new Turret(position, enemyList, 250f, staticGt, 60, basicTurretIdle, shootUppgradeCard, rangeUppgradeCard);
+                Turret turret = new Turret(position, enemyList, 275f, staticGt, 60, basicTurretIdle, shootUppgradeCard, rangeUppgradeCard);
 
                 turretList.Add(turret);
             }
@@ -191,29 +196,25 @@ namespace TestGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            DrawTexture(background1Texture, new Vector2(32, 32), 0, new Vector2(32, 32));
-            DrawTexture(backgroundPath1Texture, new Vector2(32, 32), 0, new Vector2(32, 32));
-            DrawTexture(moneyCounterTexture, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height/2), 0, new Vector2(32, 32));
+            DrawTexture(background1Texture, new Vector2(32, 32), 0, new Vector2(32, 32), Vector2.One);
+            DrawTexture(backgroundPath1Texture, new Vector2(32, 32), 0, new Vector2(32, 32), Vector2.One);
+            DrawTexture(moneyCounterTexture, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height/2), 0, new Vector2(32, 32), Vector2.One);
             DrawText(font, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height + 25), score.ToString());
             
-            
-            // DrawTexture(shootSpeedUpgrade, new Vector2(_graphics.PreferredBackBufferWidth - 232,_graphics.PreferredBackBufferHeight/2 + 55), 0f, new Vector2(32, 32));
-            // DrawTexture(rangeUpgrade, new Vector2(_graphics.PreferredBackBufferWidth - 232,_graphics.PreferredBackBufferHeight/2 + 170), 0f, new Vector2(32, 32));
-            
-
-
             foreach(Enemy enemy in enemyList)
             {
-                DrawTexture(enemy.monster1Texture, enemy.Position, 0, new Vector2(32, 32));
+                DrawTexture(enemy.monster1Texture, enemy.Position, 0, new Vector2(32, 32), Vector2.One);
             }
             foreach(Turret turret in turretList){
-                DrawTexture(turretBaseTexture, turret.position, 0, new Vector2(32, 32));
-                DrawTexture(turret.basicTurretTexture, turret.position, turret.rotation, new Vector2(32, 32));
+                DrawTexture(turretBaseTexture, turret.position, 0, new Vector2(32, 32), Vector2.One);
+                DrawTexture(turret.basicTurretTexture, turret.position, turret.rotation, new Vector2(32, 32), Vector2.One);
 
                 if(turret.showUpgrades){
-                    DrawTexture(cardBasicTurret, new Vector2(_graphics.PreferredBackBufferWidth - cardBasicTurret.Width, -cardBasicTurret.Height/2 + _graphics.PreferredBackBufferHeight/2), 0f, new Vector2(32, 32));
-                    DrawTexture(turret.shootUppgrade.texture, turret.shootUppgrade.position, turret.shootUppgrade.rotation, turret.shootUppgrade.offset);
-                    DrawTexture(turret.rangeUppgrade.texture, turret.rangeUppgrade.position, turret.rangeUppgrade.rotation, turret.rangeUppgrade.offset);
+                    DrawTexture(cardBasicTurret, new Vector2(_graphics.PreferredBackBufferWidth - cardBasicTurret.Width, -cardBasicTurret.Height/2 + _graphics.PreferredBackBufferHeight/2), 0f, new Vector2(32, 32),Vector2.One);
+                    DrawTexture(turret.shootUppgrade.texture, turret.shootUppgrade.position, turret.shootUppgrade.rotation, turret.shootUppgrade.offset, Vector2.One);
+                    DrawTexture(turret.rangeUppgrade.texture, turret.rangeUppgrade.position, turret.rangeUppgrade.rotation, turret.rangeUppgrade.offset, Vector2.One);
+                    DrawTexture(rangeTexture, new Vector2(turret.position.X - (turret.rangeTextureScale * rangeTexture.Width/2), turret.position.Y - (turret.rangeTextureScale * rangeTexture.Height/2)), 0, new Vector2(0f, 0f), new Vector2(turret.rangeTextureScale, turret.rangeTextureScale));
+                    Console.WriteLine(turret.rangeTextureScale);
                 }
             }
             
@@ -221,7 +222,7 @@ namespace TestGame
             base.Draw(gameTime);
         }
 
-        void DrawTexture(Texture2D texture, Vector2 position, float rotation, Vector2 offset)
+        void DrawTexture(Texture2D texture, Vector2 position, float rotation, Vector2 offset, Vector2 scale)
         {
             _spriteBatch.Begin();
             _spriteBatch.Draw(
@@ -231,9 +232,24 @@ namespace TestGame
                 Color.White,
                 rotation,
                 offset,
-                Vector2.One,
+                scale,
                 SpriteEffects.None,
                 0f
+            );
+            _spriteBatch.End();
+        }
+        void DrawShape(){
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(
+                whiteRectangle, 
+                new Vector2(20f, 20f), 
+                null,
+                Color.Chocolate, 
+                0f, 
+                Vector2.Zero, 
+                new Vector2(80f, 80f),
+                SpriteEffects.None, 0f
             );
             _spriteBatch.End();
         }

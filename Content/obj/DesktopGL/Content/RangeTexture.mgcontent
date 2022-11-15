@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/ShootSpeedUpgrade.png</SourceFile>
-  <SourceTime>2022-11-14T21:21:35.0627847+01:00</SourceTime>
-  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/ShootSpeedUpgrade.xnb</DestFile>
-  <DestTime>2022-11-15T20:54:34.6604423+01:00</DestTime>
+  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/RangeTexture.png</SourceFile>
+  <SourceTime>2022-11-15T21:01:07.2412267+01:00</SourceTime>
+  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/RangeTexture.xnb</DestFile>
+  <DestTime>2022-11-15T21:04:44.6440836+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

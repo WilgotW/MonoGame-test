@@ -13,6 +13,7 @@
     <File>E:/C#/Monogame/TestGame/TestGame/Content/evilFleshHit.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Level1.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/MoneyCounter.png</File>
+    <File>E:/C#/Monogame/TestGame/TestGame/Content/RangeTexture.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/RangeUpgrade.png</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/Score.spritefont</File>
     <File>E:/C#/Monogame/TestGame/TestGame/Content/ShootSpeedUpgrade.png</File>
@@ -27,6 +28,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>BasicTurret.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -89,3 +89,6 @@ E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\evilFleshHit.xn
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\CardBasicTurret.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\RangeUpgrade.xnb
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\ShootSpeedUpgrade.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\RangeTexture.xnb

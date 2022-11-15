@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "I8b443P79y6UOmwDacYfNV6p44oT39VHlyt4BrtN4H1pBK1L8Zd+JTkzUDBLERLdxEN+d7K2AykY4RXmw15R5g==",
+  "dgSpecHash": "pfHaFycY9HBlAKES0I7U4GQkitAN7DHiH+/j2jmyjOomzYYd1EzGBDVPFjyqkLvuimOEi9+HMvLwrShrA9efdA==",
   "success": true,
   "projectFilePath": "E:\\C#\\Monogame\\TestGame\\TestGame\\TestGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
+    "C:\\Users\\Wilgot\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\Wilgot\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }
