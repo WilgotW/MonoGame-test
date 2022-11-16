@@ -12,6 +12,8 @@ namespace TestGame
     public class Game1 : Game
     {
         List<String> path1 = new List<string>() { "r6.7", "u3.3", "r6.45", "d6.5", "r6.6", "u7.55", "r1" };
+        List<String> path1_heavy = new List<string>() { "r13.4", "u6.6", "r12.9", "d13", "r13.2", "u15.1", "r2" };
+        List<String> path1_fast = new List<string>() { "r3.35", "u1.65", "r3.225", "d3.25", "r3.3", "u3.775", "r0.5" };
         static List<Enemy> enemyList = new List<Enemy>();
         static List<Turret> turretList = new List<Turret>();
 
@@ -27,9 +29,11 @@ namespace TestGame
         Texture2D background1Texture;
 
         
-        Texture2D monster1Texture;
+        // Texture2D monster1Texture;
+        static public Texture2D monster2Idle;
+        static public Texture2D monster3Idle;
         static public Texture2D monster1Idle;
-        static public Texture2D monster1Hit;
+        static public Texture2D monsterHit;
         
         Texture2D turretBaseTexture;
         static Texture2D basicTurretIdle;
@@ -81,7 +85,10 @@ namespace TestGame
             rangeUpgrade = Content.Load<Texture2D>("RangeUpgrade");
 
             monster1Idle = Content.Load<Texture2D>("evilFlesh");
-            monster1Hit = Content.Load<Texture2D>("evilFleshHit");
+            monster2Idle = Content.Load<Texture2D>("heavyEvilFlesh");
+            monster3Idle = Content.Load<Texture2D>("fastEvilFlesh");
+
+            monsterHit = Content.Load<Texture2D>("evilFleshHit");
 
             turretBaseTexture = Content.Load<Texture2D>("TurretBaseV2");
             moneyCounterTexture = Content.Load<Texture2D>("MoneyCounter");
@@ -97,18 +104,63 @@ namespace TestGame
 
             this.IsMouseVisible = true;
         }
-        public static Texture2D changeMonster1Texture(Texture2D current){
-            if(current == monster1Idle){
-                return monster1Hit;
+        public static Texture2D changeMonster1Texture(Texture2D current, string type){
+            if(current == monster1Idle || current == monster2Idle || current == monster3Idle){
+                return monsterHit;
             }else{
-                return monster1Idle;
+                switch (type)
+                {
+                    case "normal":
+                        return monster1Idle;
+                    case "heavy": 
+                        return monster2Idle;
+                    case "fast":
+                        return monster3Idle;
+                    default:
+                        return monster1Idle;
+                }
+                
             }
         }
-        public static Texture2D changeTurretTexture(Texture2D current){
-            if(current == basicTurretIdle){
+        public static Texture2D changeTurretTexture(Texture2D current, int e){
+            if(e == 1){
+                return basicTurretIdle;
+            }
+            else if(current == basicTurretIdle){
                 return basicTurretShoot;
             }else{
                 return basicTurretIdle;
+            }
+            
+        }
+        int spawnAmount = 10;
+        int spawnRate = 1500;
+        int higherMonsterChance = 55;
+        
+        void WaveManager(){
+            if (gt > timeSinceLast + spawnRate)
+            {
+                if(enemyList.Count + enemiesKilled < spawnAmount){
+                    AddEnemy();
+                    timeSinceLast = gt;
+                }else{
+                    NextWave();
+                }
+            }
+        }
+        void NextWave(){
+            if (enemiesKilled == spawnAmount)
+            {
+                Console.WriteLine("Next Wave!");
+                spawnAmount += 10;
+                if(higherMonsterChance != -40){
+                    higherMonsterChance -= 20;
+                }
+                enemiesKilled = 0;
+                if(spawnRate >= 1000){
+                    spawnRate -= 500;
+                }
+                timeSinceLast = gt;
             }
         }
         protected override void Update(GameTime gameTime)
@@ -122,17 +174,11 @@ namespace TestGame
             mouseController.gt = gt;
 
             
-
+            WaveManager();
 
             gt = gameTime.TotalGameTime.TotalMilliseconds;
             staticGt = gt;
-            if (gt > timeSinceLast + 1500)
-            {
-                if(enemyList.Count + enemiesKilled < 20){
-                    AddEnemy();
-                    timeSinceLast = gt;
-                }
-            }
+            
             if(enemyList.Count > 0)
             {
                 foreach (Enemy enemy in enemyList)
@@ -145,10 +191,17 @@ namespace TestGame
                     enemyY += enemy.Speed * enemy.DirY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                     enemy.Position = new Vector2(enemyX, enemyY);
+
+                    
                 }
                 for (int i = 0; i < enemyList.Count; i++)
                 {
                     if(enemyList[i].Health <= 0){
+                        EnemyDie(i);
+                        break;
+                    }
+                    if(enemyList[i].Position.X > _graphics.PreferredBackBufferWidth + enemyList[i].monsterTexture.Width){
+                        Console.WriteLine("you took damage");
                         EnemyDie(i);
                     }
                 }
@@ -165,9 +218,25 @@ namespace TestGame
         void AddEnemy()
         {
             Vector2 pos = new Vector2(-64 / 2, (_graphics.PreferredBackBufferHeight / 2)+40);
-            Enemy enemy = new Enemy(path1, pos, 60f, gt, 35, monster1Idle);
-            enemyList.Add(enemy);
-            enemy.Start();
+            int num = getRandomNum();
+            if(num >= 55 - higherMonsterChance){
+                Enemy enemy = new Enemy(path1, pos, 60f, gt, 35, monster1Idle, "normal");
+                enemyList.Add(enemy);
+                enemy.Start();
+            }else if(num >= 34 - higherMonsterChance){
+                Enemy enemy = new Enemy(path1, pos, 60f, gt, 300, monster2Idle, "heavy");
+                enemyList.Add(enemy);
+                enemy.Start();
+            }else{
+                Enemy enemy = new Enemy(path1_fast, pos, 120f, gt, 35, monster3Idle, "fast");
+                enemyList.Add(enemy);
+                enemy.Start();
+            }
+        }
+        int getRandomNum(){
+            Random random = new Random();
+            int num = random.Next(1, 100);
+            return num;
         }
         public static void AddTurret(Vector2 position){
             if(score >= 500){
@@ -203,7 +272,7 @@ namespace TestGame
             
             foreach(Enemy enemy in enemyList)
             {
-                DrawTexture(enemy.monster1Texture, enemy.Position, 0, new Vector2(32, 32), Vector2.One);
+                DrawTexture(enemy.monsterTexture, enemy.Position, 0, new Vector2(32, 32), Vector2.One);
             }
             foreach(Turret turret in turretList){
                 DrawTexture(turretBaseTexture, turret.position, 0, new Vector2(32, 32), Vector2.One);
@@ -214,7 +283,7 @@ namespace TestGame
                     DrawTexture(turret.shootUppgrade.texture, turret.shootUppgrade.position, turret.shootUppgrade.rotation, turret.shootUppgrade.offset, Vector2.One);
                     DrawTexture(turret.rangeUppgrade.texture, turret.rangeUppgrade.position, turret.rangeUppgrade.rotation, turret.rangeUppgrade.offset, Vector2.One);
                     DrawTexture(rangeTexture, new Vector2(turret.position.X - (turret.rangeTextureScale * rangeTexture.Width/2), turret.position.Y - (turret.rangeTextureScale * rangeTexture.Height/2)), 0, new Vector2(0f, 0f), new Vector2(turret.rangeTextureScale, turret.rangeTextureScale));
-                    Console.WriteLine(turret.rangeTextureScale);
+                    // Console.WriteLine(turret.rangeTextureScale);
                 }
             }
             

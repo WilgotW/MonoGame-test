@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/background1.png</SourceFile>
-  <SourceTime>2022-11-13T02:13:52.1375951+01:00</SourceTime>
-  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/background1.xnb</DestFile>
-  <DestTime>2022-11-16T16:25:24.65546+01:00</DestTime>
+  <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/fastEvilFlesh.png</SourceFile>
+  <SourceTime>2022-11-16T17:06:24.0598867+01:00</SourceTime>
+  <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/fastEvilFlesh.xnb</DestFile>
+  <DestTime>2022-11-16T17:15:43.4883564+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

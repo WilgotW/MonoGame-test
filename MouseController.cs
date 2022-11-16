@@ -74,12 +74,16 @@ namespace TestGame
                             
                             _turretList[hoveringTurretIndex].showUpgrades = true;
                         }
-                        else if(_turretList[hoveringTurretIndex].showUpgrades == true && !_turretList[hoveringTurretIndex].mouseIsHovering){
+                        else if(_turretList[hoveringTurretIndex].showUpgrades == true){
                             _turretList[hoveringTurretIndex].showUpgrades = false;
                         }
                         else{
+                            foreach(Turret turret in _turretList){
+                                if(turret.mouseIsHovering){
+                                    break;
+                                }
+                            }
                             Game1.AddTurret(mousePos);
-
                             _turretList[hoveringTurretIndex].showUpgrades = false;
                         }
                     }else{

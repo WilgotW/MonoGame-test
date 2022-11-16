@@ -3,7 +3,7 @@
   <SourceFile>E:/C#/Monogame/TestGame/TestGame/Content/ball.png</SourceFile>
   <SourceTime>2022-11-08T20:21:30.2178712+01:00</SourceTime>
   <DestFile>E:/C#/Monogame/TestGame/TestGame/Content/bin/DesktopGL/Content/ball.xnb</DestFile>
-  <DestTime>2022-11-15T20:54:34.3864346+01:00</DestTime>
+  <DestTime>2022-11-16T16:25:24.6654271+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

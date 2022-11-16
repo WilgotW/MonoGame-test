@@ -92,3 +92,5 @@ E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\ShootSpeedUpgra
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\RangeTexture.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\fastEvilFlesh.xnb
+E:\C#\Monogame\TestGame\TestGame\bin\Debug\netcoreapp3.1\Content\heavyEvilFlesh.xnb

@@ -9,7 +9,7 @@ namespace TestGame
 {
     internal class Enemy
     {
-        public Texture2D monster1Texture {get; set;}
+        public Texture2D monsterTexture {get; set;}
         public List<String> instructions = new List<string>();
         public Instructor instruction1;
         public double GameT;
@@ -20,17 +20,19 @@ namespace TestGame
         public int DirY { get; set; }
         public Vector2 Dir;
 
+        public string type {get; set;}
         private double timeSinceLast = 0;
         private double gt;
 
-        public Enemy(List<String> instructions, Vector2 position, float speed, double gameT, int Health, Texture2D monster1Texture)
+        public Enemy(List<String> instructions, Vector2 position, float speed, double gameT, int Health, Texture2D monsterTexture, string type)
         {
             this.instructions = instructions;
             this.Position = position;
             this.Speed = speed;
             this.GameT = gameT;
             this.Health = Health;
-            this.monster1Texture = monster1Texture;
+            this.monsterTexture = monsterTexture;
+            this.type = type;
         }
 
         public void Start()
@@ -41,8 +43,8 @@ namespace TestGame
         public void UpdateEnemy(){
             if (GameT > timeSinceLast + 300)
             {
-                if(monster1Texture == Game1.monster1Hit){
-                    monster1Texture = Game1.changeMonster1Texture(monster1Texture);
+                if(monsterTexture == Game1.monsterHit){
+                    monsterTexture = Game1.changeMonster1Texture(monsterTexture, type);
                 }
                 
                 timeSinceLast = GameT;
@@ -51,7 +53,7 @@ namespace TestGame
 
         public void TakeDamage(int dmg){
             Health -= dmg;
-            monster1Texture = Game1.changeMonster1Texture(monster1Texture);
+            monsterTexture = Game1.changeMonster1Texture(monsterTexture, type);
         }
         public void changeDir()
         {

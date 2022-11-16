@@ -114,17 +114,19 @@ namespace TestGame
                         e = true;
                         Vector2 test = new Vector2(position.X + lookDirX/70, position.Y + lookDirY/70);
                         position = test;
-                        basicTurretTexture = Game1.changeTurretTexture(basicTurretTexture);
+                        basicTurretTexture = Game1.changeTurretTexture(basicTurretTexture, 0);
                         // Game1.changeTurretTexture();
                     }else{
                         e = false;
                         Vector2 test = new Vector2(position.X - lookDirX/70, position.Y - lookDirY/70);
                         position = test;
-                        basicTurretTexture = Game1.changeTurretTexture(basicTurretTexture);
+                        basicTurretTexture = Game1.changeTurretTexture(basicTurretTexture, 0);
                     }
                     animTime = gt;
                 }
                 rotation = (float)Math.Atan2(lookDirY, lookDirX);
+            }else if(!targetFound){
+                basicTurretTexture = Game1.changeTurretTexture(basicTurretTexture, 1);
             }
         }
 
