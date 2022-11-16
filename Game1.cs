@@ -54,7 +54,11 @@ namespace TestGame
 
         Texture2D whiteRectangle;
 
-        
+        int playerHealth = 5;
+        int spawnAmount = 10;
+        int spawnRate = 1500;
+        int higherMonsterChance = 55;
+        double tempe;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -133,9 +137,7 @@ namespace TestGame
             }
             
         }
-        int spawnAmount = 10;
-        int spawnRate = 1500;
-        int higherMonsterChance = 55;
+        
         
         void WaveManager(){
             if (gt > timeSinceLast + spawnRate)
@@ -202,6 +204,15 @@ namespace TestGame
                     }
                     if(enemyList[i].Position.X > _graphics.PreferredBackBufferWidth + enemyList[i].monsterTexture.Width){
                         Console.WriteLine("you took damage");
+                        tempe = gt;
+                        if(playerHealth <= 0){
+                            
+                            tempe = gt;
+                            Console.WriteLine("You died");
+                        }else{
+                            
+                            playerHealth--;
+                        }
                         EnemyDie(i);
                     }
                 }
@@ -269,7 +280,18 @@ namespace TestGame
             DrawTexture(backgroundPath1Texture, new Vector2(32, 32), 0, new Vector2(32, 32), Vector2.One);
             DrawTexture(moneyCounterTexture, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height/2), 0, new Vector2(32, 32), Vector2.One);
             DrawText(font, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight - moneyCounterTexture.Height + 25), score.ToString());
-            
+
+            DrawText(font, new Vector2(_graphics.PreferredBackBufferWidth/2, 10), playerHealth.ToString());
+
+            if(playerHealth <= 0){
+                DrawText(font, new Vector2(-50 + _graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight/2), "YOU DIED");
+                if (gt > tempe + 3000)
+                {
+                    this.Exit();
+                }
+            }
+                
+
             foreach(Enemy enemy in enemyList)
             {
                 DrawTexture(enemy.monsterTexture, enemy.Position, 0, new Vector2(32, 32), Vector2.One);
